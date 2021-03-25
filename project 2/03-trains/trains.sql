@@ -1,31 +1,31 @@
 CREATE TABLE Train (
-	num INT,
-	type VARCHAR(255),
+	num INT NOT NULL,
+	type VARCHAR(255) NOT NULL,
 	PRIMARY KEY (num)
 );
 
 
 CREATE TABLE Agent (
-	empno INT,
-	address VARCHAR(255),
-	name VARCHAR(255),
+	empno INT NOT NULL,
+	address VARCHAR(255) NOT NULL,
+	name VARCHAR(255) NOT NULL,
 	PRIMARY KEY (empno)
 );
 
 CREATE TABLE Station (
-    name VARCHAR(255),
-    director INT,
-    location VARCHAR(255),
+    name VARCHAR(255) NOT NULL,
+    director INT NOT NULL,
+    location VARCHAR(255) NOT NULL,
     PRIMARY KEY (name),
     FOREIGN KEY(director) REFERENCES Agent(empno)
 );
 
 CREATE TABLE Travel (
-    train INT,
-    line VARCHAR(255),
-    driver INT,
-    date DATE,
-    time TIME,
+    train INT NOT NULL,
+    line VARCHAR(255) NOT NULL,
+    driver INT NOT NULL,
+    date DATE NOT NULL,
+    time TIME NOT NULL,
     FOREIGN KEY (train) REFERENCES Train(num),
     FOREIGN KEY (line) REFERENCES Line(code) ON DELETE CASCADE,
     FOREIGN KEY (driver) REFERENCES Agent(empno),
@@ -33,17 +33,17 @@ CREATE TABLE Travel (
 );
 
 CREATE TABLE Line (
-    code VARCHAR(255),
-    birthDate DATE,
+    code VARCHAR(255) NOT NULL,
+    birthDate DATE NOT NULL,
     PRIMARY KEY (code)
 );
 
 CREATE TABLE Section (
-    line VARCHAR(255),
-    start VARCHAR(255),
-    arrival VARCHAR(255),
-    orderNum VARCHAR(255),
-    length DECIMAL(7, 5),
+    line VARCHAR(255) NOT NULL,
+    start VARCHAR(255) NOT NULL,
+    arrival VARCHAR(255) NOT NULL,
+    orderNum VARCHAR(255) NOT NULL,
+    length DECIMAL(7, 5) NOT NULL,
     FOREIGN KEY (line) REFERENCES Line(code) ON DELETE CASCADE,
     FOREIGN KEY (start) REFRENCES Station(name) ON DELETE CASCADE,
     FOREIGN KEY (arrival) REFRENCES Station(name) ON DELETE CASCADE,
