@@ -11,18 +11,18 @@ CREATE TABLE person(
 
 CREATE TABLE visit(
     person_id INTEGER NOT NULL, 
-    entitled VARCHAR(30) NOT NULL,
-    start_time TIMESTAMP NOT NULL,
-    end_time TIMESTAMP NOT NULL,
-    PRIMARY KEY (person_id, entitled, timestamp_visit, start_time, end_time)
+    name VARCHAR(30) NOT NULL,
+    visit_timestamp_start TIMESTAMP NOT NULL,
+    visit_timestamp_end TIMESTAMP NOT NULL,
+    PRIMARY KEY (person_id, name, visit_timestamp_start, visit_timestamp_end)
     FOREIGN KEY(person_id) REFERENCES people(person_id) ON DELETE CASCADE,
-    FOREIGN KEY(entitled) REFERENCES place(entitled) ON DELETE CASCADE
+    FOREIGN KEY(name) REFERENCES place(name) ON DELETE CASCADE
 );
 
 CREATE TABLE place(
-    entitled VARCHAR(30) PRIMARY KEY NOT NULL, 
+    name VARCHAR(30) PRIMARY KEY NOT NULL, 
     adress VARCHAR(50) NOT NULL,
-    type_place VARCHAR(15) NOT NULL,
+    type VARCHAR(15) NOT NULL,
     capacity INTEGER NOT NULL
 );
 
